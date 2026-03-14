@@ -30,6 +30,23 @@
     font-size: 14px;
     line-height: 1.5;
 }
+			#llegenda {
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    z-index: 1000;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+}
+#llegenda h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
         html, body, #map {
             width: 100%;
             height: 100%;
@@ -40,6 +57,11 @@
         <title></title>
     </head>
     <body>
+		<div id="llegenda">
+    <h4>Llegenda</h4>
+    <i style="background: #ff0000; width: 12px; height: 12px; display: inline-block;"></i> A<br>
+    <i style="background: #0000ff; width: 12px; height: 12px; display: inline-block; margin-top: 4px;"></i> B
+</div>
 		<div id="titol-flotant">Trams de tren i metro recorreguts</div>
         <div id="map">
         </div>
