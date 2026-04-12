@@ -6,48 +6,12 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-		<title>Tren i metro recorregut</title>
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
-			#titol-flotant {
-    position: absolute;
-    top: 80px;
-    left: 80px;
-    z-index: 1000;
-    background-color: #333333;
-    padding: 10px 20px;
-    border-radius: 1px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    font-family: Helvetica, sans-serif;
-    font-weight: normal;
-	color: #ff6330;
-}
-			.leaflet-popup-content {
-    font-family: 'Montserrat', Helvetica, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-}
-			#llegenda {
-    position: absolute;
-    bottom: 30px;
-    right: 10px;
-    z-index: 1000;
-    background-color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    line-height: 1.5;
-}
-#llegenda h4 {
-    margin: 0 0 8px 0;
-    font-size: 14px;
-}
         html, body, #map {
             width: 100%;
             height: 100%;
@@ -58,12 +22,6 @@
         <title></title>
     </head>
     <body>
-		<div id="llegenda">
-    <h4>Llegenda</h4>
-    <i style="background: #ff0000; width: 12px; height: 12px; display: inline-block;"></i> A<br>
-    <i style="background: #0000ff; width: 12px; height: 12px; display: inline-block; margin-top: 4px;"></i> B
-</div>
-		<div id="titol-flotant">Trams de tren i metro recorreguts</div>
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
@@ -84,10 +42,11 @@
         <script src="data/2023_5.js"></script>
         <script src="data/2024_6.js"></script>
         <script src="data/2025_7.js"></script>
+        <script src="data/2026_8.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[35.91555525718375,-11.204169883293437],[57.607497898401554,26.884413012495482]]);
+        }).fitBounds([[41.15915968069723,1.7737689168048103],[42.35758101000656,3.179565650668627]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -162,7 +121,7 @@
         map.getPane('pane_DarkMatternolabels_0').style.zIndex = 400;
         var layer_DarkMatternolabels_0 = L.tileLayer('https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
             pane: 'pane_DarkMatternolabels_0',
-            opacity: 0.581,
+            opacity: 0.961,
             attribution: '<a href="https://cartodb.com/basemaps/">Map tiles by CartoDB, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>',
             minZoom: 1,
             maxZoom: 28,
@@ -177,7 +136,7 @@
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Pre-Covid'] !== null ? autolinker.link(String(feature.properties['Pre-Covid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Línia</strong><br />' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -195,7 +154,7 @@
                 dashArray: '',
                 lineCap: 'round',
                 lineJoin: 'round',
-                weight: 2.0,
+                weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -219,6 +178,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -231,11 +194,11 @@
             return {
                 pane: 'pane_2020_2',
                 opacity: 1,
-                color: 'rgba(255,89,238,1.0)',
+                color: 'rgba(150,92,5,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -259,6 +222,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -273,9 +240,9 @@
                 opacity: 1,
                 color: 'rgba(241,182,65,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -299,6 +266,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -311,11 +282,11 @@
             return {
                 pane: 'pane_2022_4',
                 opacity: 1,
-                color: 'rgba(165,19,97,1.0)',
+                color: 'rgba(225,76,143,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -342,6 +313,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['km nous'] !== null ? autolinker.link(String(feature.properties['km nous']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -354,10 +329,10 @@
             return {
                 pane: 'pane_2023_5',
                 opacity: 1,
-                color: 'rgba(224,0,19,1.0)',
+                color: 'rgba(225,60,69,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
+                lineCap: 'round',
+                lineJoin: 'round',
                 weight: 2.0,
                 fillOpacity: 0,
                 interactive: true,
@@ -383,7 +358,12 @@
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['km recorreguts'] !== null ? autolinker.link(String(feature.properties['km recorreguts']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">km recorreguts</th>\
+                        <td>' + (feature.properties['km recorreguts'] !== null ? autolinker.link(String(feature.properties['km recorreguts']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -397,11 +377,11 @@
             return {
                 pane: 'pane_2024_6',
                 opacity: 1,
-                color: 'rgba(0,204,41,1.0)',
+                color: 'rgba(0,175,94,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -423,10 +403,15 @@
         function pop_2025_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">fid</th>\
+                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Recorregut'] !== null ? autolinker.link(String(feature.properties['Recorregut']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -440,11 +425,11 @@
             return {
                 pane: 'pane_2025_7',
                 opacity: 1,
-                color: 'rgba(0,224,232,1.0)',
+                color: 'rgba(109,191,232,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -463,6 +448,50 @@
         });
         bounds_group.addLayer(layer_2025_7);
         map.addLayer(layer_2025_7);
+        function pop_2026_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Línia</th>\
+                        <td>' + (feature.properties['Línia'] !== null ? autolinker.link(String(feature.properties['Línia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_2026_8_0() {
+            return {
+                pane: 'pane_2026_8',
+                opacity: 1,
+                color: 'rgba(74,39,114,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_2026_8');
+        map.getPane('pane_2026_8').style.zIndex = 408;
+        map.getPane('pane_2026_8').style['mix-blend-mode'] = 'normal';
+        var layer_2026_8 = new L.geoJson(json_2026_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_2026_8',
+            layerName: 'layer_2026_8',
+            pane: 'pane_2026_8',
+            onEachFeature: pop_2026_8,
+            style: style_2026_8_0,
+        });
+        bounds_group.addLayer(layer_2026_8);
+        map.addLayer(layer_2026_8);
         setBounds();
         </script>        
     </body>
