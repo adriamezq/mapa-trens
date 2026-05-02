@@ -35,24 +35,24 @@
     // Afegir controls de navegació (zoom i rotació)
     map.addControl(new maplibregl.NavigationControl());
     // Quan l'usuari fa clic a la capa de línies...
-    map.on('click', 'LíniesRecorregudesD', function (e) {
-        // Extreu el nom de la línia de la taula d'atributs
-        var nomLinia = e.features[0].properties['Línia'];
+map.on('click', 'Línies Recorregudesb', function (e) {
+    // Extreu el nom de la línia de la taula d'atributs
+    var nomLinia = e.features[0].properties['Línia'];
 
-        // Crea i mostra el pop-up
-        new maplibregl.Popup()
-            .setLngLat(e.lngLat) // Agafa les coordenades d'on ha clicat el ratolí
-            .setHTML('<h3>' + nomLinia + '</h3>') // Posa el text en format títol (Heading 3)
-            .addTo(map);
-    });
+    // Crea i mostra el pop-up
+    new maplibregl.Popup()
+        .setLngLat(e.lngLat) // Agafa les coordenades d'on ha clicat el ratolí
+        .setHTML('<h3>' + nomLinia + '</h3>') // Posa el text en format títol
+        .addTo(map);
+});
 
 // Canvia el cursor a la maneta quan passa per sobre d'una línia (Nivell 2)
-map.on('mouseenter', 'LíniesRecorregudesD', function () {
+map.on('mouseenter', 'Línies Recorregudesb', function () {
     map.getCanvas().style.cursor = 'pointer';
 });
 
 // Torna el cursor a la normalitat quan surt de la línia
-map.on('mouseleave', 'LíniesRecorregudesD', function () {
+map.on('mouseleave', 'Línies Recorregudesb', function () {
     map.getCanvas().style.cursor = '';
 });
 </script>
