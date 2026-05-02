@@ -29,13 +29,13 @@
         style: 'https://api.maptiler.com/maps/019db72b-4c75-74e5-8746-50a45e406259/style.json?key=GLB69E1I7MveT2AXj0eu', 
         
         center: [2.17, 41.38], // Coordenades inicials (Longitud, Latitud - ex: Barcelona)
-        zoom: 11 // Nivell de zoom inicial
+        zoom: 5 // Nivell de zoom inicial
     });
 
     // Afegir controls de navegació (zoom i rotació)
     map.addControl(new maplibregl.NavigationControl());
     // Quan l'usuari fa clic a la capa de línies...
-    map.on('click', 'NOM_DE_LA_CAPA_A_MAPTILER', function (e) {
+    map.on('click', 'Línies Recorregudes', function (e) {
         // Extreu el nom de la línia de la taula d'atributs
         var nomLinia = e.features[0].properties.nom_columna;
 
@@ -47,12 +47,12 @@
     });
 
     // Canvia el cursor a la maneta quan passa per sobre d'una línia (Nivell 2)
-    map.on('mouseenter', 'NOM_DE_LA_CAPA_A_MAPTILER', function () {
+    map.on('mouseenter', 'Línies Recorregudes', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
 
     // Torna el cursor a la normalitat quan surt de la línia
-    map.on('mouseleave', 'NOM_DE_LA_CAPA_A_MAPTILER', function () {
+    map.on('mouseleave', 'Línies Recorregudes', function () {
         map.getCanvas().style.cursor = '';
     });
 </script>
