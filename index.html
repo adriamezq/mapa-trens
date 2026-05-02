@@ -37,7 +37,7 @@
     // Quan l'usuari fa clic a la capa de línies...
     map.on('click', 'LíniesRecorregudesD', function (e) {
         // Extreu el nom de la línia de la taula d'atributs
-        var nomLinia = e.features[0].properties.Any;
+        var nomLinia = e.features[0].properties['Línia'];
 
         // Crea i mostra el pop-up
         new maplibregl.Popup()
@@ -46,15 +46,15 @@
             .addTo(map);
     });
 
-    // Canvia el cursor a la maneta quan passa per sobre d'una línia (Nivell 2)
-    map.on('mouseenter', 'Línies Recorregudes', function () {
-        map.getCanvas().style.cursor = 'pointer';
-    });
+// Canvia el cursor a la maneta quan passa per sobre d'una línia (Nivell 2)
+map.on('mouseenter', 'LíniesRecorregudesD', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
 
-    // Torna el cursor a la normalitat quan surt de la línia
-    map.on('mouseleave', 'Línies Recorregudes', function () {
-        map.getCanvas().style.cursor = '';
-    });
+// Torna el cursor a la normalitat quan surt de la línia
+map.on('mouseleave', 'LíniesRecorregudesD', function () {
+    map.getCanvas().style.cursor = '';
+});
 </script>
 
 </body>
