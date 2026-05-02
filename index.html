@@ -35,9 +35,9 @@
     // Afegir controls de navegació (zoom i rotació)
     map.addControl(new maplibregl.NavigationControl());
     // Quan l'usuari fa clic a la capa de línies...
-    map.on('click', 'Línies Recorregudes', function (e) {
+    map.on('click', 'LíniesRecorregudesD', function (e) {
         // Extreu el nom de la línia de la taula d'atributs
-        var nomLinia = e.features[0].properties.nom_columna;
+        var nomLinia = e.features[0].properties.Any;
 
         // Crea i mostra el pop-up
         new maplibregl.Popup()
